@@ -1,10 +1,25 @@
 import { Component } from '@angular/core';
+import {Model} from './model';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-todo',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  model =  Model;
+
+  getName() {
+    console.log('CHIAMATOOOOO' + this.model);
+    return this.model.user;
+  }
+
+  getTodoItems() {
+    return this.model.items.filter(item => !item.done );
+  }
+
+  addItem(newItem) {
+    if (newItem !== '') {
+      this.model.items.push({action: newItem , done: false});
+    }
+  }
 }
